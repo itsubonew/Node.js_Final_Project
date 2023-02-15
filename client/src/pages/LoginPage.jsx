@@ -10,7 +10,7 @@ export default function LoginPage() {
         try{
         axios.post('/login',{email,password});
     }catch (e) {
-
+        alert('login failed');
     }
 }
     return (
