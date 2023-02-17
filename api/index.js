@@ -76,5 +76,7 @@ app.get('/profile', (req,res)=> {
         res.json(null);
     }
    
-})
+});
+
+
 app.listen(4000);
