@@ -18,7 +18,23 @@ export default function PlacesPage(){
         {action === 'new' && (
            <div>
             <form>
-                <input type="text" placeholder="title, for example: My lovely apt"/>
+                <h2 className="text-2xl mt-4">Title</h2>
+                <p className="text-gray-500 text-sm">Title for your place. It should be short and catchy:)</p>
+                <input type="text" placeholder= "title, for example: My lovely apt"/>
+                <h2 className="text-2xl mt-4">Address</h2>
+                <p className="text-gray-500 text-sm">Address to this place</p>
+                <input type="text" placeholder="address" />
+                <h2 className="text-2xl mt-4">Photos</h2>
+                <p className="text-gray-500 text-sm">More = Better</p>
+                <div className="flex gap-2">
+                    <input type="text" placeholder="{'Add using a link...jpg'}" />
+                    <button className="gb-gray-200 px-4 rounded-2xl">Add&nbsp;photos</button>
+                </div>
+                <div className="mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+                <button className="border bg-transparent rounded-2xl p-8 text-2xl text-gray-600">
+                    Upload
+                </button>
+                </div>
             </form>
            </div>
         )}
