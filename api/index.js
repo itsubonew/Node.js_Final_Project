@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bcrypt = require ('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./models/User.js');
+// const Place = require('./models/Place.js');
 const cookieParser = require('cookie-parser');
 
 require('dotenv').config();
