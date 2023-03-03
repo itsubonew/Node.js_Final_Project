@@ -6,7 +6,9 @@ const jwt = require('jsonwebtoken');
 const User = require('./models/User.js');
 const cookieParser = require('cookie-parser');
 const imageDownloader = require('image-downloader');
-const multer = require('multer')
+const multer = require('multer');
+const fs = require ('fs');
+
 
 // const Place = require('./models/Place.js');
 
@@ -99,8 +101,16 @@ app.post('/upload-by-link',async (req,res) => {
 
  const photosMiddleware = multer({dest:'uploads/'});
  app.post('/upload', photosMiddleware.array('photos',100), (req,res)=> {
-    console.log(req.files);
-    res.json(req.files);
+    const uploadedFiles = [];
+    for (let i = 0; i < req.files.length; i++) {
+        const {path,originalname} = req.files[i];
+        const parts = originalname.split('.')
+        const ext = parts[parts.length - 1];
+        const newPath = path + '.' + ext;
+        fs.renameSync(path, newPath);
+        uploadedFiles.push(newPath);
+    }
+    res.json(uploadedFiles);
  });
 
 
