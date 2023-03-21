@@ -1,6 +1,9 @@
 import PhotoUploader from "../PhotosUploader";
 import Perks from "../Perks";
-import {useState} from "react";
+import {useEffect,useState} from "react";
+import axios from "axios";
+import AccountNav from "./AccountNav";
+import { Navigate,useParams } from "react-router-dom";
 
 export default function PlacesFormPage () {
     const [title,setTitle] = useState('');
@@ -12,6 +15,7 @@ export default function PlacesFormPage () {
     const [checkIn, setCheckIn] = useState('');
     const [checkOut, setCheckOut] = useState('');
     const [maxGuests, setMaxGuests] = useState(1);
+    const [redirect, setRedirect] = useState(false);
 
     function inputHeader(text) {
         return ( 
@@ -38,11 +42,17 @@ export default function PlacesFormPage () {
             title, address, addedPhotos,
              description, perks, extraInfo, 
              checkIn, checkOut, maxGuests
-            });
+        });
+        setRedirect(true);
+    }
+
+    if (redirect) {
+        return <Navigate to={'/account/places'} />
     }
 
     return ( 
     <div>
+        <AccountNav />
         <form onSubmit={addNewPlace}>
             {preInput('Title','Title for your place. It should be short and catchy:)')}
             <input type="text" value={title} onChange={ev => setTitle(ev.target.value)} placeholder= "title, for example: My lovely apt"/>
